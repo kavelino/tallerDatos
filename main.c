@@ -9,11 +9,12 @@ int main() {
 	Usuario_t user;
 	printf("Ingrese su nombre: ");
 	scanf("%s", user.nombre);
-	user->nombre[0] = toupper(user->nombre[0]);
+	user.nombre[0] = toupper(user.nombre[0]);
 	printf("Ingrese su apellido: ");
 	scanf("%s", user.apellido);
-	user->apellido[0] = toupper(user->apellido[0]);
+	user.apellido[0] = toupper(user.apellido[0]);
 	crearUsuario(&user);
+//	printf("%s %s\n", user.nombre, user.apellido);
 	crearPassWord(&user);
 }
 
@@ -28,17 +29,38 @@ void crearUsuario(Usuario_t *user) {
 			break;
 		}
 	}
-	printf("Usuario sugerido: %s", user->username);
+	printf("Usuario sugerido: %s\n", user->username);
 }
 
 void crearPassWord(Usuario_t *user) {
 	int boolean = 1;
 
-	while(tmp) {
-		printf("Ingrese un password: ")
-		scanf("%s", user.password);
-		int tmp = validar(&user); 
-}
+	while(boolean) {
+		printf("Ingrese un password: ");
+		scanf("%s", user->password);
+		int tmp = validar(user);
 
+		switch(tmp) {
+			case 0:
+				printf("Contraseña aceptada\n");
+    				boolean = 0;
+    				break;
+			case 3:
+				printf("Password tiene menos de 10 caracteres\n");
+    				boolean = 1;
+    				break;
 
+			case 4:
+				printf("Password no contiene letras\n");
+    				boolean = 1;
+    				break;
+			case 5:
+				printf("Password no contiene digitos\n");
+				boolean = 1;
+				break;
+			default:
+				boolean = 1;
+				break;
+		}
+	}
 }
