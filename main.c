@@ -15,6 +15,7 @@ int main() {
 	scanf("%s", user.apellido);
 	user.apellido[0] = toupper(user.apellido[0]);
 	crearUsuario(&user);
+//	printf("%s %s\n", user.nombre, user.apellido);
 	crearPassWord(&user);
 	user->userid = 100000 + rand() % (999999 - 100000);	
 	printf("Nombre: %s %s\n", user.nombre, user.apellido);
