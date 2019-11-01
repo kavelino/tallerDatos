@@ -39,8 +39,6 @@ int main() {
 				break;
 		}
 	}
-	
-	
 }
 
 void crearUsuario(Usuario_t *user) {
