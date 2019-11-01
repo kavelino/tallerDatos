@@ -47,7 +47,7 @@ void crearPassWord(Usuario_t *user) {
 
 		switch(tmp) {
 			case 0:
-				printf("Contraseña aceptada\n");
+				printf("Password aceptado\n");
     				boolean = 0;
     				break;
 			case 3:
