@@ -1,16 +1,16 @@
-bin/cifrado: obj/main.o obj/ciclico.o obj/morse.o
-	gcc obj/main.o obj/ciclico.o obj/morse.o -o bin/cifrado
+ejecutable: main.o validar.o #guardar.o
+	gcc main.o validar.o -o ejecutable
 
-obj/main.o: src/main.c
-	gcc -Wall -I include/ -c src/main.c -o obj/main.o
+main.o: main.c
+	gcc -Wall -I -c main.c -o main.o
 
-obj/ciclico.o: src/ciclico.c
-	gcc -Wall -c src/ciclico.c -o obj/ciclico.o
+validar.o: validar.c
+	gcc -Wall -I -c validar.c -o validar.o
 
-obj/morse.o: src/morse.c
-	gcc -Wall -c src/morse.c -o obj/morse.o
+#guardar.o: guardar.c
+	#gcc -Wall -c guardar.c -o guardar.o
 
 .PHONY: clean
 
 clean:
-	rm bin/* obj/*
+	rm *.o ejecutable
