@@ -1,0 +1,16 @@
+bin/cifrado: obj/main.o obj/ciclico.o obj/morse.o
+	gcc obj/main.o obj/ciclico.o obj/morse.o -o bin/cifrado
+
+obj/main.o: src/main.c
+	gcc -Wall -I include/ -c src/main.c -o obj/main.o
+
+obj/ciclico.o: src/ciclico.c
+	gcc -Wall -c src/ciclico.c -o obj/ciclico.o
+
+obj/morse.o: src/morse.c
+	gcc -Wall -c src/morse.c -o obj/morse.o
+
+.PHONY: clean
+
+clean:
+	rm bin/* obj/*
