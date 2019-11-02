@@ -13,4 +13,4 @@ guardar.o: guardar.c
 .PHONY: clean
 
 clean:
-	rm *.o usuario.txt usuarios
+	rm *.o usuarios

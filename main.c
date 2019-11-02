@@ -1,23 +1,34 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 #include "./validar.h"
 #include "./guardar.h"
 
 void crearUsuario(Usuario_t *);
 void crearPassWord(Usuario_t *);
+int esDigito(char buf[]);
 
 int main() {
 	Usuario_t user[MAX];
-	int tamanio = 0;
-	int opcion = 1;
-	while(opcion) {		
-		printf("\nIngresar usuario (1) o ");
-		printf("Salir (2): ");
-		scanf("%d", &opcion);
-			
+     	int tamanio = 0;
+     	char buf[2];
+     	int opcion = 0;
+     	int bandera = 1;
+	int tmp = 1;
+
+     	while(bandera) {
+		
+		do {	
+			printf("\nIngresar usuario (1) o ");
+	     		printf("Salir (2): ");
+	     		scanf("%s", buf);
+	     		tmp = esDigito(buf);
+		}while(tmp == 0);
+
+       	     	opcion = atoi(buf);
 		switch(opcion) {
-			case 1:
+		     	case 1:
 				printf("Ingrese su nombre: ");
 				scanf("%s", user[tamanio].nombre);
 				user[tamanio].nombre[0] = toupper(user[tamanio].nombre[0]);
@@ -28,15 +39,14 @@ int main() {
 				crearPassWord(&user[tamanio]);
 				user[tamanio].userid = 10000 + rand() % (99999 - 10000);
 				
-				/*printf("\nNombre: %s %s\n", user[tamanio].nombre, user[tamanio].apellido);
-				printf("Usuario: %s\n", user[tamanio].username);
-				printf("Password: %s\n", user[tamanio].password);
-				printf("UserId: %d\n", user[tamanio].userid);*/
 				tamanio++;
-				opcion = 1;
+				bandera = 1;
 				break;
-			case 2:
-				opcion = 0;
+		     	case 2:
+				bandera = 0;
+				break;
+		     	default:
+				bandera = 1;
 				break;
 		}
 	}
@@ -90,4 +100,13 @@ void crearPassWord(Usuario_t *user) {
 				break;
 		}
 	}
+}
+
+int esDigito(char buf[]) {
+	for(int i = 0; i < strlen(buf); i++) {
+        	if(!(isdigit(buf[i]))) {
+            		return 0;
+        	}
+    	}
+    return 1;
 }
